@@ -1,9 +1,6 @@
 package com.lldproject.userauthservice.controllers;
 
-import com.lldproject.userauthservice.dtos.LoginRequestDto;
-import com.lldproject.userauthservice.dtos.RoleDto;
-import com.lldproject.userauthservice.dtos.SignupRequestDto;
-import com.lldproject.userauthservice.dtos.UserDto;
+import com.lldproject.userauthservice.dtos.*;
 import com.lldproject.userauthservice.models.Role;
 import com.lldproject.userauthservice.models.User;
 import com.lldproject.userauthservice.services.IAuthService;
@@ -44,6 +41,11 @@ public class AuthController {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         headers.add(HttpHeaders.SET_COOKIE, token);
         return new ResponseEntity<>(userDto, headers, HttpStatus.OK);
+    }
+
+    @PostMapping("/validateToken")
+    public void validateToken(@RequestBody ValidateTokenDto validateTokenDto) {
+        authService.validateToken(validateTokenDto.getToken());
     }
 
     private UserDto from(User user){

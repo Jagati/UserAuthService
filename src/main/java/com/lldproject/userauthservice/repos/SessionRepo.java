@@ -1,12 +1,12 @@
 package com.lldproject.userauthservice.repos;
 
-import com.lldproject.userauthservice.models.User;
+import com.lldproject.userauthservice.models.Session;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface UserRepo extends JpaRepository<User,Long> {
-    Optional<User> findByEmail(String email);
+public interface SessionRepo extends JpaRepository<Session,Long> {
+    Optional<Session> findByToken(String token);
 }
